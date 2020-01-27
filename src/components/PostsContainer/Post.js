@@ -9,34 +9,36 @@ import "./Posts.css";
 
 const Post = props => {
   // set up state for the likes
-  const [likes, setLikes] = useState(props.post2.likes)
+  const [likes, setLikes] = useState(props.dataFromParent.likes);
 
-  const liked = () => {
-    setLikes(likes + 1);
+  //function increments likes when invoked
+  const incrementLike = (likes) => {
+    setLikes(likes => likes + 1);
   };
 
   return (
     <div className="post-border">
       <PostHeader
-        username={props.post2.username}
+        username={props.dataFromParent.username}
         thumbnailUrl={
-          props.post2.thumbnailUrl
+          props.dataFromParent.thumbnailUrl
         }
       />
       <div className="post-image-wrapper">
         <img
           alt="post thumbnail"
           className="post-image"
-          src={props.post2.imageUrl}
+          src={props.dataFromParent.imageUrl}
+        />
+        <LikeSection
+        incrementLike={incrementLike}
+        likes={likes}
         />
       </div>
-      <LikeSection
-        liked = {liked}
-        likes = {likes}
-      />
+      
       <CommentSection
-        postId={props.post2.imageUrl}
-        comments={props.post2.comments}
+        postId={props.dataFromParent.imageUrl}
+        comments={props.dataFromParent.comments}
       />
     </div>
   );

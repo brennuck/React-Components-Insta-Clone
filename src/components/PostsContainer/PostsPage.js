@@ -5,19 +5,19 @@ import "./Posts.css";
 
 // pass the data from App.js down as props then map through the data
 const PostsPage = (props) => {
-  console.log("props", props);
+  // console.log("the props", props);
   return (
     <div className="posts-container-wrapper">
-      {/* map through data here */}
-      {props.postData.map((pdata) => {
+      {props.myData.map(item => (
+        // console.log('items:', item.imageUrl);
         <Post
-          post2 = {pdata}
-          key = {pdata.imageUrl}
-        />
-      })}
+         key={item.imageUrl}
+         dataFromParent={item}
+         />
+
+      ))}
     </div>
   );
 };
 
 export default PostsPage;
-
